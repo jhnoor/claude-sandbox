@@ -1,0 +1,6 @@
+# Workspace contains user projects - don't track
+workspace/*
+!workspace/.claude/
+
+# Environment
+.env

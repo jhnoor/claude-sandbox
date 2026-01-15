@@ -1,0 +1,19 @@
+# NOTE: For Claude Max users, use ./run.sh instead of docker-compose
+# as it handles credential mounting dynamically.
+#
+# This compose file is provided for reference / API key users.
+
+services:
+  claude:
+    build: .
+    container_name: claude-sandbox
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - ./workspace:/project
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "init-firewall.sh && claude --dangerously-skip-permissions"
